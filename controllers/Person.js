@@ -21,15 +21,14 @@ router.get('/id', async (req,res) => {
     }
 })
 
-router.post('/', async (req, res) => {
+router.post('/', async (req,res) =>{
     try {
-        const user = await new Person(res.body).save()
-        res.json(user)
-        
+     const user = await new Person(req.body).save()
+     res.json(user)
     } catch (error) {
-        console.log('error retrieving people', error)
-        res.status(500).json({ message: 'error creating people'})
-    }
-})
+     console.log('error creating person', error)
+     res.status(500).json({ message: `error creating person`})
+    } 
+ })
 
 module.exports = router
